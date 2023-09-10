@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let pattern =
+        /^([.]\d+|\d+[.]|[+-]?\d+|\d+[.]\d+|\d[.]?\d*[eE][-+]?\d+)$/;
+      let testNumber = [
+        "5e-3",
+        "1E10",
+        "1.",
+        "1+1",
+        "1E-4",
+        "+5",
+        ".5.",
+        "1.55",
+        ".5",
+        "1d7",
+        "1e+12",
+      ];
+      // Tests
+
+      testNumber.forEach((number) => {
+        if (pattern.test(number)) {
+          console.log(` ${number} is a valid for javascript Number`);
+        } else {
+          console.log(` ${number} is not a valid for javascript Number`);
+        }
+      });
+    </script>
+  </body>
+</html>

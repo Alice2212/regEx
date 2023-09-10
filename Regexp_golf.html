@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1. car and cat
+      const regex1 = /ca[rt]/;
+      const testArray = ["car", "cat", "ant", "hat"];
+
+      testArray.forEach((item) => {
+        if (regex1.test(item)) {
+          console.log(`Match found in "${item}"`);
+        } else {
+          console.log(`No match found in "${item}"`);
+        }
+      });
+
+      //2.pop and prop
+      const regex2 = /pr?op/;
+
+      const testArray2 = ["pop", "prop", "pops", "props"];
+
+      testArray2.forEach((item) => {
+        if (regex2.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+
+      //   3. ferret, ferry, and ferrari:
+      const regex3 = /ferr(et|y|ari)/;
+
+      const testArray3 = ["ferret", "ferry", "ferrari", "furious", "fast"];
+
+      testArray3.forEach((item) => {
+        if (regex3.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+
+      //   4. Any word ending in at
+      const regex4 = /\w+ious\b/;
+
+      const testArray4 = [
+        "adventitious",
+        "amatorious",
+        "ambagious",
+        "precious",
+        "calmly",
+      ];
+
+      testArray4.forEach((item) => {
+        if (regex4.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+
+      //   5.A whitespace character followed by a period, comma, colon, or semicolon
+      const regex5 = /\s[.,;:]/;
+      const testArray5 = [" . ", " , ", " ; ", " : ", " - "];
+
+      testArray5.forEach((item) => {
+        if (regex5.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+
+      //   6. A word longer than six letters
+      const regex6 = /\b\w{7,}\b/;
+      const testArray6 = ["audacious", "events", "victorious", "ice"];
+
+      testArray6.forEach((item) => {
+        if (regex6.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+
+      //   7. A word without the letter e (or E):
+
+      const regex7 = /\b[^eE\s]+\b/;
+      const testArray7 = ["bag", "early", "henry", "announce"];
+
+      testArray7.forEach((item) => {
+        if (regex7.test(item)) {
+          console.log(`successful test "${item}"`);
+        } else {
+          console.log(`sorry no match "${item}"`);
+        }
+      });
+    </script>
+  </body>
+</html>
