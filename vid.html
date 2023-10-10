@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Download</title>
+    <style>
+      #response_txt {
+        width: 50%;
+        margin: 2em auto;
+      }
+
+      .btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 90vh;
+      }
+
+      .btns2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      button {
+        padding: 1em;
+        background-color: blue;
+        border-radius: 5px;
+        border: 0;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btns">
+      <h2>Welcome to video downloader</h2>
+      <div class="btns2">
+        <button id="btn">Download Video</button>
+        <button id="play_btn">Play</button>
+      </div>
+      <div id="response_txt"></div>
+    </div>
+
+    <script>
+      const downloadBtn = document.getElementById("btn");
+      const play_btn = document.getElementById("play_btn");
+      const response_txt = document.getElementById("response_txt");
+      let videoUrl;
+
+      downloadBtn.addEventListener("click", () => {
+        videoUrl =
+          "https://static.videezy.com/system/resources/previews/000/047/870/original/Text_01a_2.mp4";
+        downloadVideoCallback(videoUrl, (error) => {
+          if (error) {
+            response_txt.innerHTML = `<h2>Error downloading video: ${error}</h2>`;
+          } else {
+            response_txt.innerHTML = `<h2>Video Downloaded Successfully</h2>`;
+            play_btn.style.display = "inline-block";
+          }
+        });
+      });
+
+      play_btn.addEventListener("click", () => {
+        if (videoUrl) {
+          playVideo(videoUrl);
+        } else {
+          response_txt.innerHTML = `<h2>Please download the video first.</h2>`;
+        }
+      });
+
+      function downloadVideoCallback(url, callback) {
+        fetch(url)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "video.mp4";
+            a.click();
+            URL.revokeObjectURL(url);
+            callback(null);
+          })
+          .catch((error) => callback(error));
+      }
+
+      function playVideo(url) {
+        const videoPlayer = document.createElement("video");
+        videoPlayer.src = url;
+        videoPlayer.controls = true;
+        videoPlayer.style.width = "100%";
+        response_txt.innerHTML = ""; // Clear previous messages
+        response_txt.appendChild(videoPlayer);
+      }
+    </script>
+  </body>
+</html>
